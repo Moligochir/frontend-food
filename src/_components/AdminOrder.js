@@ -3,12 +3,11 @@ import { DeliveryIkon } from "@/app/FoodIkon/deliveryIkon"
 import { MenuIkon } from "@/app/FoodIkon/menuikon"
 import { NomNom } from "@/app/FoodIkon/nomnom"
 import { SortIkon } from "@/app/FoodIkon/sortIkon"
-import { NavBarData } from "./NavbarData"
-import { LeftArrow } from "@/app/FoodIkon/leftArrow"
-import { RightArrow } from "@/app/FoodIkon/rightArrow"
-import { PageButton } from "./PageButton"
+import { OrderData } from "./OrderData"
 
-export const NavBar = ()=> {
+
+
+export const AdminOrder = ()=> {
     return(
     <div className="w-[1440px] h-[1024px] flex">
         <div className="h-full w-[20%] bg-white ">
@@ -70,19 +69,8 @@ export const NavBar = ()=> {
             <SortIkon />
           </div>
         </div>
-        <NavBarData/>
-        <NavBarData/>
-        <NavBarData/>
-        <NavBarData/>
-        <NavBarData/>
-        <NavBarData/>
-        <NavBarData/>
-        <NavBarData/>
-        <NavBarData/>
-        <NavBarData/>
-        <NavBarData/>
-        <NavBarData/>
-        <PageButton/>
+        <OrderData/>
+        
       </div >
       </div>
       )}

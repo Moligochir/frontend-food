@@ -1,7 +1,7 @@
 import { DownArrow } from "@/app/FoodIkon/downArrow"
 import { SortIkon } from "@/app/FoodIkon/sortIkon"
 
-export const NavBarData = ()=> {
+export const OrderData = ()=> {
     return(<div className="text-[#71717A] bg-white h-[56px] w-full text-sm items-center flex relative justify-between ">
               <div className="w-auto p-4">
                 <input type="checkbox" className="w-4 h-4 flex"></input>
@@ -20,7 +20,7 @@ export const NavBarData = ()=> {
                 <h1 className="flex border-[#EF4444] border-[1px] rounded-[999] items-center p-2 font-black text-[#09090B] text-xs bg-white">Pending<SortIkon /></h1>
                 
               </div>
-              <div className="absolute w-[263px] bg-white border-[1px] rounded-md left-[27%] z-[1] top-[70%] hidden">
+              <div className="absolute w-[263px] bg-white border-[1px] rounded-md left-[27%] z-[1] top-[70%] ">
                 <div className="text-xs flex justify-between items-center">
                     <div className="flex items-center"><img className="w-8 h-7" src="/file.svg"/>
                     Sunshine Stackers</div>
