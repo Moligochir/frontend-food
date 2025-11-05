@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 
 export const AdminFood = () => {
   return (
-    <div className="w-[1440px] h-[1024px] flex">
+    <div className="w-full h-full flex">
       <div className="h-full w-[20%] bg-white ">
         <div className="flex justify-center items-center w-full pl-5 pr-5 pt-9">
           <NomNom />
@@ -34,7 +34,7 @@ export const AdminFood = () => {
           <div className="w-9 h-9 rounded-[999]  bg-black"></div>
         </div>
 
-        <div className="w-full justify-start bg-white p-4 ">
+        <div className="w-full justify-start bg-white p-4 rounded-[6px]">
           <div className="text-xl font-semibold">Dishes category</div>
           <div className="flex flex-wrap gap-3 w-full">
             <Button className={"rounded-[999]"} variant="outline">
@@ -97,7 +97,9 @@ export const AdminFood = () => {
           </div>
         </div>
 
-        <FoodData />
+        <div className="w-full pt-6">
+          <FoodData />
+        </div>
       </div>
     </div>
   );
