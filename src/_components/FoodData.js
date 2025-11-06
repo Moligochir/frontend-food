@@ -1,23 +1,33 @@
 "use client";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowUpRightIcon, PenIcon } from "lucide-react";
 
 const options = {
   method: "GET",
+  headers: {
+    accept: "application/json",
+    Authorization: "Bearer ",
+  },
 };
 
-export const FoodData = () => {
+export const FoodData = ({ key, catId, categoriesData }) => {
+  const [foods, setFoods] = useState([]);
   const getData = async () => {
-    const data = await fetch("http://localhost:8000/food-category", options);
+    const data = await fetch("http://localhost:8000/foods", options);
+    const jsonData = await data.json();
+
+    setFoods(jsonData);
   };
+  console.log(foods, "hooolooooo");
+
   useEffect(() => {
     getData();
-  });
+  }, []);
 
   return (
     <div className="w-full justify-start bg-white p-4 rounded-[6px] ">
-      <div className="text-xl font-semibold">Appetizers (6)</div>
+      <div className="text-xl font-semibold">{categoriesData} (6)</div>
       <div className="flex h-full gap-3 w-full flex-wrap pt-4">
         <div className="flex justify-center items-center border-[1px] border-[#18181B] border-dashed rounded-[20px]">
           <div className="w-full h-full items-center flex-col justify-center pl-15 pr-15 pt-17 pb-17">
@@ -34,122 +44,30 @@ export const FoodData = () => {
             </p>
           </div>
         </div>
-        <div className="flex justify-center items-center border-[1px] border-[#E4E4E7] border-solid rounded-[20px]">
-          <div className="w-[274px] h-full items-center flex-col justify-center p-3">
-            <div className="w-full flex justify-end items-end">
-              <img className="w-full h-[129px] relative" src="/globe.svg" />
+        {foods.map((cur) => (
+          <div className="flex justify-center items-center border-[1px] border-[#E4E4E7] border-solid rounded-[20px]">
+            <div className="w-[260px] h-full items-center flex-col justify-center p-3">
+              <div className="w-full flex justify-end items-end">
+                <img className="w-full h-[129px] relative" src="/globe.svg" />
 
-              <Button
-                variant="outline"
-                size="icon"
-                className="rounded-full w-11 h-11 absolute text-[#EF4444]"
-              >
-                <PenIcon />
-              </Button>
+                <Button
+                  variant="outline"
+                  size="icon"
+                  className="rounded-full w-11 h-11 absolute text-[#EF4444]"
+                >
+                  <PenIcon />
+                </Button>
+              </div>
+              <h1 className="flex text-sm text-[#EF4444] justify-between pt-5">
+                {cur.foodName}
+                <span className="text-[#09090B] text-xs">{cur.price}₮</span>
+              </h1>
+              <p className="text-xs w-full pt-2 text-start text-[#09090B]">
+                {cur.ingredients}
+              </p>
             </div>
-            <h1 className="flex text-sm text-[#EF4444] justify-between pt-5">
-              Brie Crostini Appetizer
-              <span className="text-[#09090B] text-xs">$12.99</span>
-            </h1>
-            <p className="text-xs w-full pt-2 text-start text-[#09090B]">
-              Fluffy pancakes stacked with fruits, cream, syrup, and powdered
-              sugar.
-            </p>
           </div>
-        </div>
-        <div className="flex justify-center items-center border-[1px] border-[#E4E4E7] border-solid rounded-[20px]">
-          <div className="w-[274px] h-full items-center flex-col justify-center p-3">
-            <div className="w-full flex justify-end items-end">
-              <img className="w-full h-[129px] relative" src="/globe.svg" />
-
-              <Button
-                variant="outline"
-                size="icon"
-                className="rounded-full w-11 h-11 absolute text-[#EF4444]"
-              >
-                <PenIcon />
-              </Button>
-            </div>
-            <h1 className="flex text-sm text-[#EF4444] justify-between pt-5">
-              Brie Crostini Appetizer
-              <span className="text-[#09090B] text-xs">$12.99</span>
-            </h1>
-            <p className="text-xs w-full pt-2 text-start text-[#09090B]">
-              Fluffy pancakes stacked with fruits, cream, syrup, and powdered
-              sugar.
-            </p>
-          </div>
-        </div>
-        <div className="flex justify-center items-center border-[1px] border-[#E4E4E7] border-solid rounded-[20px]">
-          <div className="w-[274px] h-full items-center flex-col justify-center p-3">
-            <div className="w-full flex justify-end items-end">
-              <img className="w-full h-[129px] relative" src="/globe.svg" />
-
-              <Button
-                variant="outline"
-                size="icon"
-                className="rounded-full w-11 h-11 absolute text-[#EF4444]"
-              >
-                <PenIcon />
-              </Button>
-            </div>
-            <h1 className="flex text-sm text-[#EF4444] justify-between pt-5">
-              Brie Crostini Appetizer
-              <span className="text-[#09090B] text-xs">$12.99</span>
-            </h1>
-            <p className="text-xs w-full pt-2 text-start text-[#09090B]">
-              Fluffy pancakes stacked with fruits, cream, syrup, and powdered
-              sugar.
-            </p>
-          </div>
-        </div>
-
-        <div className="flex justify-center items-center border-[1px] border-[#E4E4E7] border-solid rounded-[20px]">
-          <div className="w-[274px] h-full items-center flex-col justify-center p-3">
-            <div className="w-full flex justify-end items-end">
-              <img className="w-full h-[129px] relative" src="/globe.svg" />
-
-              <Button
-                variant="outline"
-                size="icon"
-                className="rounded-full w-11 h-11 absolute text-[#EF4444]"
-              >
-                <PenIcon />
-              </Button>
-            </div>
-            <h1 className="flex text-sm text-[#EF4444] justify-between pt-5">
-              Brie Crostini Appetizer
-              <span className="text-[#09090B] text-xs">$12.99</span>
-            </h1>
-            <p className="text-xs w-full pt-2 text-start text-[#09090B]">
-              Fluffy pancakes stacked with fruits, cream, syrup, and powdered
-              sugar.
-            </p>
-          </div>
-        </div>
-        <div className="flex justify-center items-center border-[1px] border-[#E4E4E7] border-solid rounded-[20px]">
-          <div className="w-[274px] h-full items-center flex-col justify-center p-3">
-            <div className="w-full flex justify-end items-end">
-              <img className="w-full h-[129px] relative" src="/globe.svg" />
-
-              <Button
-                variant="outline"
-                size="icon"
-                className="rounded-full w-11 h-11 absolute text-[#EF4444]"
-              >
-                <PenIcon />
-              </Button>
-            </div>
-            <h1 className="flex text-sm text-[#EF4444] justify-between pt-5">
-              Brie Crostini Appetizer
-              <span className="text-[#09090B] text-xs">$12.99</span>
-            </h1>
-            <p className="text-xs w-full pt-2 text-start text-[#09090B]">
-              Fluffy pancakes stacked with fruits, cream, syrup, and powdered
-              sugar.
-            </p>
-          </div>
-        </div>
+        ))}
       </div>
     </div>
   );
