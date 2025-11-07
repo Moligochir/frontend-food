@@ -5,15 +5,9 @@ import { NomNom } from "@/app/FoodIkon/nomnom";
 import { FoodData } from "./FoodData";
 import { Button } from "@/components/ui/button";
 import { useEffect, useState } from "react";
-import {
-  Card,
-  CardAction,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+
+import { ArrowUpRightIcon, XIcon } from "lucide-react";
+import { Input } from "@/components/ui/input";
 
 const options = {
   method: "GET",
@@ -39,7 +33,7 @@ export const AdminFood = () => {
   }, []);
 
   return (
-    <div className="w-full h-full flex">
+    <div className="w-full h-full flex relative">
       <div className="h-full w-[20%] bg-white ">
         <div className="flex justify-center items-center w-full pl-5 pr-5 pt-9">
           <NomNom />
@@ -82,19 +76,6 @@ export const AdminFood = () => {
             <Button className="rounded-[100%] w-9 h-9" variant="destructive">
               +
             </Button>
-            <Card>
-              <CardHeader>
-                <CardTitle>Card Title</CardTitle>
-                <CardDescription>Card Description</CardDescription>
-                <CardAction>Card Action</CardAction>
-              </CardHeader>
-              <CardContent>
-                <p>Card Content</p>
-              </CardContent>
-              <CardFooter>
-                <p>Card Footer</p>
-              </CardFooter>
-            </Card>
           </div>
         </div>
 
@@ -108,6 +89,30 @@ export const AdminFood = () => {
               />
             </div>
           ))}
+        </div>
+      </div>
+      <div className="w-[460px] bg-white border-[1px] rounded-md absolute left-[40%] top-[100%]">
+        <div className="flex justify-between items-center w-full text-lg font-bold p-6">
+          <p className="w-full">Add new category</p>
+          <Button variant="outline" size="icon" className="rounded-full w-9">
+            <XIcon />
+          </Button>
+        </div>
+        <div className="flex justify-between items-center w-full text-lg font-bold  p-6">
+          <div className="grid w-full text-sm items-center gap-3">
+            <label className="text-sm font-medium" htmlFor="email">
+              Category name
+            </label>
+            <Input
+              className="font-light"
+              type="Category name"
+              id="Category name"
+              placeholder="Type category name..."
+            />
+          </div>
+        </div>
+        <div className="flex justify-end p-6 items-center w-full text-lg font-bold ">
+          <Button className="h-10 text-sm font-medium">Add category</Button>
         </div>
       </div>
     </div>
