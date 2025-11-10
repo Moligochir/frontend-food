@@ -8,6 +8,14 @@ import { useEffect, useState } from "react";
 
 import { ArrowUpRightIcon, XIcon } from "lucide-react";
 import { Input } from "@/components/ui/input";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 
 const options = {
   method: "GET",
@@ -19,6 +27,10 @@ const options = {
 
 export const AdminFood = () => {
   const [categories, setCategories] = useState([]);
+  const [isShow, setIsShow] = useState(false);
+  const UPLOAD_PRESET = "foodDelivery";
+
+  const CLOUD_NAME = "didfxzpn3";
 
   const getData = async () => {
     const data = await fetch("http://localhost:8000/food-category", options);
@@ -26,6 +38,13 @@ export const AdminFood = () => {
 
     setCategories(jsonData);
   };
+  const HandleAddCategoryButton = () => {
+    setIsShow(true);
+  };
+  const HandleAddCategoryXButton = () => {
+    setIsShow(false);
+  };
+
   // console.log(categories, "categories");
 
   useEffect(() => {
@@ -73,7 +92,11 @@ export const AdminFood = () => {
               </Button>
             ))}
 
-            <Button className="rounded-[100%] w-9 h-9" variant="destructive">
+            <Button
+              className="rounded-[100%] w-9 h-9"
+              onClick={HandleAddCategoryButton}
+              variant="destructive"
+            >
               +
             </Button>
           </div>
@@ -91,30 +114,38 @@ export const AdminFood = () => {
           ))}
         </div>
       </div>
-      <div className="w-[460px] bg-white border-[1px] rounded-md absolute left-[40%] top-[100%]">
-        <div className="flex justify-between items-center w-full text-lg font-bold p-6">
-          <p className="w-full">Add new category</p>
-          <Button variant="outline" size="icon" className="rounded-full w-9">
-            <XIcon />
-          </Button>
-        </div>
-        <div className="flex justify-between items-center w-full text-lg font-bold  p-6">
-          <div className="grid w-full text-sm items-center gap-3">
-            <label className="text-sm font-medium" htmlFor="email">
-              Category name
-            </label>
-            <Input
-              className="font-light"
-              type="Category name"
-              id="Category name"
-              placeholder="Type category name..."
-            />
+      {isShow && (
+        <div className="w-[460px] bg-white border-[1px] rounded-md absolute z-10 left-[40%] top-[5%]">
+          <div className="flex justify-between items-center w-full text-lg font-bold p-6">
+            <p className="w-full">Add new category</p>
+
+            <Button
+              variant="outline"
+              size="icon"
+              onClick={HandleAddCategoryXButton}
+              className="rounded-full w-9"
+            >
+              <XIcon />
+            </Button>
+          </div>
+          <div className="flex justify-between items-center w-full text-lg font-bold  p-6">
+            <div className="grid w-full text-sm items-center gap-3">
+              <label className="text-sm font-light" htmlFor="email">
+                Category name
+              </label>
+              <Input
+                className="font-light"
+                type="Category name"
+                id="Category name"
+                placeholder="Type category name..."
+              />
+            </div>
+          </div>
+          <div className="flex justify-end p-6 items-center w-full text-lg font-bold ">
+            <Button className="h-10 text-sm font-medium">Add category</Button>
           </div>
         </div>
-        <div className="flex justify-end p-6 items-center w-full text-lg font-bold ">
-          <Button className="h-10 text-sm font-medium">Add category</Button>
-        </div>
-      </div>
+      )}
     </div>
   );
 };
