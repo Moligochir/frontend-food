@@ -1,29 +1,32 @@
-import { DateIkon } from "@/app/FoodIkon/dateIkon"
-import { DeliveryIkon } from "@/app/FoodIkon/deliveryIkon"
-import { MenuIkon } from "@/app/FoodIkon/menuikon"
-import { NomNom } from "@/app/FoodIkon/nomnom"
-import { SortIkon } from "@/app/FoodIkon/sortIkon"
-import { OrderData } from "./OrderData"
+import { DateIkon } from "@/app/FoodIkon/dateIkon";
+import { DeliveryIkon } from "@/app/FoodIkon/deliveryIkon";
+import { MenuIkon } from "@/app/FoodIkon/menuikon";
 
+import { SortIkon } from "@/app/FoodIkon/sortIkon";
+import { OrderData } from "./OrderData";
+import Link from "next/link";
+import { NomNom } from "@/app/FoodIkon/nomnom";
 
-
-export const AdminOrder = ()=> {
-    return(
-    <div className="w-[1440px] h-[1024px] flex">
-        <div className="h-full w-[20%] bg-white ">
+export const AdminOrder = () => {
+  return (
+    <div className="w-full h-full flex">
+      <div className="h-full w-[20%] bg-white ">
         <div className="flex justify-center items-center w-full pl-5 pr-5 pt-9">
           <NomNom />
 
           <p className="text-sm pl-2 pr-9 text-[#71717A]">
             <span className="text-xl font-black text-[#09090B] flex">
               NomNom
-            </span>Swift delivery
+            </span>
+            Swift delivery
           </p>
         </div>
-        <div className="flex justify-center items-center w-full pl-5 pr-5 pt-10">
-          <MenuIkon />
-          <h1 className="text-sm text-[#09090B] pl-2">Food menu</h1>
-        </div>
+        <Link href={`/admin/food`}>
+          <div className="flex justify-center items-center w-full pl-5 pr-5 pt-10">
+            <MenuIkon />
+            <h1 className="text-sm text-[#09090B] pl-2">Food menu</h1>
+          </div>
+        </Link>
         <div className="flex w-full pl-14 pr-14 pt-6">
           <button className="flex justify-center items-center gap-2 w-full text-white bg-[#18181B] rounded-[999] h-10">
             <DeliveryIkon />
@@ -69,8 +72,8 @@ export const AdminOrder = ()=> {
             <SortIkon />
           </div>
         </div>
-        <OrderData/>
-        
-      </div >
+        <OrderData />
       </div>
-      )}
+    </div>
+  );
+};
