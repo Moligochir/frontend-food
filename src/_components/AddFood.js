@@ -1,3 +1,4 @@
+"use client";
 import { Button } from "@/components/ui/button";
 import { ArrowUpRightIcon, ImageIcon, PenIcon, XIcon } from "lucide-react";
 import { Input } from "@/components/ui/input";
@@ -10,11 +11,48 @@ import {
   DialogFooter,
 } from "@/components/ui/dialog";
 import { Label } from "@/components/ui/label";
+import { useState } from "react";
 
-export const AddFood = () => {
+const options = {
+  method: "GET",
+  headers: {
+    accept: "application/json",
+    Authorization: "Bearer ",
+  },
+};
+
+export const AddFood = ({ categoryId, getData }) => {
+  const [inputNameValue, setInputNameValue] = useState("");
+  const [inputPriceValue, setInpuPriceValue] = useState("");
+  const [inputIngredientsValue, setInputIngredientsValue] = useState("");
+  const [isShow, setIsShow] = useState(false);
+  console.log(inputNameValue, "sda");
+  console.log(inputPriceValue, "2");
+  console.log(inputIngredientsValue, "3");
+
+  const CreateFood = async () => {
+    await fetch("http://localhost:8000/foods", {
+      method: "POST",
+      headers: {
+        accept: "application/json",
+        "content-type": "application/json",
+        Authorization: "Bearer ",
+      },
+      body: JSON.stringify({
+        foodName: inputNameValue,
+        price: inputPriceValue,
+        ingredients: inputIngredientsValue,
+        category: categoryId,
+        image: "",
+      }),
+    });
+    await getData();
+    setIsShow(false);
+  };
+
   return (
     <div className="w-full flex justify-center items-center">
-      <Dialog>
+      <Dialog open={isShow} onOpenChange={setIsShow}>
         <DialogTrigger asChild>
           <Button className="rounded-[100%] w-9 h-9" variant="destructive">
             +
@@ -32,6 +70,7 @@ export const AddFood = () => {
                 Food name
               </label>
               <Input
+                onChange={(e) => setInputNameValue(e.target.value)}
                 className="font-light"
                 type="Food name"
                 id="Food name"
@@ -43,6 +82,7 @@ export const AddFood = () => {
                 Food price
               </label>
               <Input
+                onChange={(e) => setInpuPriceValue(e.target.value)}
                 className="font-light"
                 type="Food price"
                 id="Food price"
@@ -59,6 +99,7 @@ export const AddFood = () => {
                 Ingredients
               </label>
               <Input
+                onChange={(e) => setInputIngredientsValue(e.target.value)}
                 className="font-light h-[90px] w-full text-start"
                 type="Ingredients"
                 id="Ingredients"
@@ -81,7 +122,9 @@ export const AddFood = () => {
           </div>
           <DialogFooter className="sm:justify-start">
             <div className="flex justify-end pt-10 items-center w-full text-lg font-bold ">
-              <Button className="h-10 text-sm font-medium">Add Dish</Button>
+              <Button onClick={CreateFood} className="h-10 text-sm font-medium">
+                Add Dish
+              </Button>
             </div>
           </DialogFooter>
         </DialogContent>

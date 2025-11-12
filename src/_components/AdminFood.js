@@ -53,7 +53,6 @@ export const AdminFood = () => {
         categoryName: inputValue,
       }),
     });
-    getData();
     setIsShow(false);
   };
 
@@ -104,8 +103,8 @@ export const AdminFood = () => {
         <div className="w-full justify-start bg-white p-4 rounded-[6px]">
           <div className="text-xl font-semibold">Dishes category</div>
           <div className="flex flex-wrap gap-3 w-full">
-            {categories.map((cur) => (
-              <Button className={"rounded-[999]"} variant="outline">
+            {categories.map((cur, index) => (
+              <Button key={index} className={"rounded-[999]"} variant="outline">
                 {cur.categoryName}
                 <p className="text-white text-xs rounded-[9999] pl-2 pr-2 bg-black">
                   12
@@ -161,10 +160,10 @@ export const AdminFood = () => {
         </div>
 
         <div className="w-full pt-6">
-          {categories.map((cur) => (
-            <div className="w-full pt-4">
+          {categories.map((cur, index) => (
+            <div key={index} className="w-full pt-4">
               <FoodData
-                key={cur.id}
+                // key={cur.id}
                 catId={cur.id}
                 categoriesData={cur.categoryName}
               />
