@@ -53,6 +53,7 @@ export const AdminFood = () => {
         categoryName: inputValue,
       }),
     });
+    getData();
     setIsShow(false);
   };
 

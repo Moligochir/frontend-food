@@ -46,7 +46,7 @@ export const AddFood = ({ categoryId, getData }) => {
         image: "",
       }),
     });
-    await getData();
+    getData();
     setIsShow(false);
   };
 
